@@ -373,18 +373,33 @@ Thank you.`;
 
             // STEP 3 & 4: Redirect and update states
             setTimeout(() => {
-                // Open WhatsApp link
-                window.open(waUrl, '_blank');
+                // Open WhatsApp link with popup-blocker detection
+                let newWindow;
+                try {
+                    newWindow = window.open(waUrl, '_blank');
+                } catch (err) {
+                    console.error("Popup block caught:", err);
+                }
 
                 // Dismiss loading toast
                 loadingToast.dismiss();
 
-                // Show Success / Ready State Toast
-                showToast(
-                    "Appointment Request Ready", 
-                    "Your appointment request is ready in WhatsApp. Please send the message to complete your request.", 
-                    "success"
-                );
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                    // Popup was blocked. Provide a graceful inline fallback in the toast
+                    showToast(
+                        "WhatsApp Blocked", 
+                        `Your browser blocked opening WhatsApp. <a href="${waUrl}" target="_blank" style="color: #F59E0B; font-weight: 700; text-decoration: underline; pointer-events: auto;">Click here to open manually</a>`, 
+                        "warning",
+                        8000
+                    );
+                } else {
+                    // Show Success / Ready State Toast
+                    showToast(
+                        "Appointment Request Ready", 
+                        "Your appointment request is ready in WhatsApp. Please send the message to complete your request.", 
+                        "success"
+                    );
+                }
 
                 // STEP 19: Reset form with a safe visual buffer
                 setTimeout(() => {
