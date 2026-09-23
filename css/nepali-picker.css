@@ -1,0 +1,161 @@
+/* ==========================================================================
+   Custom Nepali Calendar Date Picker Stylesheet
+   ========================================================================== */
+
+.nepali-datepicker-popup {
+    font-family: inherit;
+    width: 320px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(5, 36, 34, 0.15);
+    border: 1px solid rgba(38, 166, 154, 0.2);
+    padding: 16px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 10001;
+}
+
+.nepali-datepicker-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 36, 34, 0.35);
+    backdrop-filter: blur(2px);
+    z-index: 10001;
+}
+
+.ndp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(38, 166, 154, 0.15);
+}
+
+.ndp-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.ndp-title-nep {
+    font-size: 16px;
+    font-weight: 700;
+    color: #052422; /* Dark deep medical teal */
+}
+
+.ndp-title-eng {
+    font-size: 11px;
+    color: #666666;
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+.ndp-prev-btn, .ndp-next-btn {
+    background: none;
+    border: none;
+    color: #26a69a; /* var(--accent) mint green */
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ndp-prev-btn:hover, .ndp-next-btn:hover {
+    background: rgba(38, 166, 154, 0.1);
+    transform: scale(1.1);
+}
+
+.ndp-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 6px;
+}
+
+.ndp-weekday {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #777777;
+    letter-spacing: 0.5px;
+}
+
+.ndp-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 6px;
+    column-gap: 4px;
+}
+
+.ndp-day {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.ndp-day.empty {
+    cursor: default;
+    background: none !important;
+}
+
+.ndp-day:not(.empty):not(.past-disabled):hover {
+    background-color: rgba(38, 166, 154, 0.12);
+    color: #26a69a;
+}
+
+.ndp-day.today {
+    border: 2px solid #26a69a;
+    font-weight: 700;
+    color: #26a69a;
+}
+
+.ndp-day.selected {
+    background-color: #26a69a !important;
+    color: #ffffff !important;
+}
+
+.ndp-day.selected .day-num-nep,
+.ndp-day.selected .day-num-eng {
+    color: #ffffff !important;
+}
+
+.ndp-day.past-disabled {
+    color: #c4c4c4;
+    cursor: not-allowed;
+    background-color: #fcfcfc;
+}
+
+.day-num-eng {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.day-num-nep {
+    font-size: 9px;
+    color: #888888;
+    margin-top: -1px;
+    font-weight: 400;
+}
+
+.ndp-day.past-disabled .day-num-nep {
+    color: #e0e0e0;
+}

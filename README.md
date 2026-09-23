@@ -1,11 +1,18 @@
-<div align="center">
+# Dr. Sudhir Shah - Cardiology Clinic
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+This is the foundation of the clinic website, built using vanilla HTML, CSS, and JavaScript.
 
-  <h1>Built with AI Studio</h2>
+## Structure
 
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+```
+/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+├── assets/
+│   ├── images/
+│   └── icons/
+└── README.md
+```

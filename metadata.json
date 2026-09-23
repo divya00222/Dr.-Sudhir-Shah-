@@ -1,0 +1,6 @@
+{
+  "name": "Dr. Sudhir Shah | Cardiologist",
+  "description": "The official website of Dr. Sudhir Shah, a dedicated and experienced cardiologist in Butwal, Nepal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
