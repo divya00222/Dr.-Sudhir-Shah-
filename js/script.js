@@ -454,5 +454,107 @@ Thank you.`;
     animatedElements.forEach(el => {
         revealObserver.observe(el);
     });
+
+    // Lightbox Functionality
+    const galleryCards = document.querySelectorAll('.gallery-card');
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+
+    if (galleryCards.length > 0 && lightbox) {
+        let currentIdx = 0;
+        const imagesList = [];
+
+        // Build list of image data
+        galleryCards.forEach((card, idx) => {
+            const imgEl = card.querySelector('.gallery-img');
+            const titleEl = card.querySelector('.gallery-item-title');
+            if (imgEl) {
+                imagesList.push({
+                    src: imgEl.getAttribute('src'),
+                    alt: imgEl.getAttribute('alt') || 'Gallery Image',
+                    title: titleEl ? titleEl.textContent : 'Dr. Sudhir Shah Gallery'
+                });
+
+                // Attach click trigger to the card/wrapper
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', () => {
+                    currentIdx = idx;
+                    openLightbox();
+                });
+            }
+        });
+
+        function openLightbox() {
+            updateLightboxContent();
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Stop page scrolling behind lightbox
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightboxContent() {
+            const data = imagesList[currentIdx];
+            if (data) {
+                lightboxImage.src = data.src;
+                lightboxImage.alt = data.alt;
+                lightboxCaption.textContent = data.title;
+            }
+        }
+
+        function nextImage() {
+            currentIdx = (currentIdx + 1) % imagesList.length;
+            updateLightboxContent();
+        }
+
+        function prevImage() {
+            currentIdx = (currentIdx - 1 + imagesList.length) % imagesList.length;
+            updateLightboxContent();
+        }
+
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeLightbox();
+            });
+        }
+
+        if (lightboxNext) {
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextImage();
+            });
+        }
+
+        if (lightboxPrev) {
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevImage();
+            });
+        }
+
+        // Close when clicking outside content area
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Key bindings
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+    }
 });
 

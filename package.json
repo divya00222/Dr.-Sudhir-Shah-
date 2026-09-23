@@ -1,11 +1,10 @@
 {
   "name": "dr-sudhir-shah-cardiologist",
   "version": "1.0.0",
-  "description": "Clean, high-performance static website for Dr. Sudhir Shah",
-  "main": "server.js",
+  "description": "Static website build wrapper",
   "scripts": {
     "start": "node server.js",
-    "build": "echo 'Static assets copy complete'"
+    "build": "echo 'Static build success'"
   },
   "dependencies": {
     "express": "^4.19.2"

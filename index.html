@@ -858,6 +858,17 @@
         </svg>
     </button>
 
+    <!-- Lightbox Modal -->
+    <div id="galleryLightbox" class="lightbox-overlay" aria-label="Image Viewer" role="dialog" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Close image viewer">&times;</button>
+        <button class="lightbox-prev" aria-label="Previous image">&#10094;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Zoomed gallery view">
+            <div id="lightboxCaption" class="lightbox-caption">Caption text</div>
+        </div>
+        <button class="lightbox-next" aria-label="Next image">&#10095;</button>
+    </div>
+
     <script src="js/nepali-picker.js"></script>
     <script src="js/script.js"></script>
 </body>
